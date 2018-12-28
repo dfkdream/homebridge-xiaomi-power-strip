@@ -23,7 +23,7 @@ function XiaoMiPowerStrip(log, config) {
     this.switchService
        .getCharacteristic(Characteristic.On)
        .on('get',this.getPowerState.bind(this))
-       .on('set',this.setPowerOn.bind(this));
+       .on('set',this.setPowerState.bind(this));
 
     this.services.push(this.switchService);
 
@@ -32,7 +32,7 @@ function XiaoMiPowerStrip(log, config) {
     this.serviceInfo
         .setCharacteristic(Characteristic.Manufacturer, 'Xiaomi')
         .setCharacteristic(Characteristic.Model, 'Power-Strip')
-        .setCharacteristic(Characteristic.SerialNumber, '62810821');;
+        .setCharacteristic(Characteristic.SerialNumber, '62810821');
 
     this.services.push(this.serviceInfo);
 
@@ -53,38 +53,25 @@ XiaoMiPowerStrip.prototype = {
     },
 
     getPowerState: function (callback) {
-        var on = this.device.power()
-        if (on == undefined){
-          on = true
-          this.device.setPower(true)
-            .then(on => console.log('Power is now', on))
-            .catch(err=>{
-              callback(err);
-            });
-        }
-        if (on == undefined){
-          on = true
-          this.device.setPower(true)
-            .then(on => console.log('Power is now', on))
-            .catch(err=>{
-              callback(err);
-            });
-        }
-        else if(on) {
-            callback(null, true);
-        } else {
+        this.log.debug('getPowerState');
+
+        if(!this.device){
             callback(null, false);
+            return;
         }
-        this.log.info('getPowerState:', on);
+
+        callback(null, this.device.power());
     },
 
-    setPowerOn: function (Power, callback) {
-        this.log.info('setPowerState:', Power);
-        this.device.setPower(Power ? true: false)
-            .then(on => console.log('Power is now', on))
-            .catch(err=>{
-              callback(err);
-            });
+    setPowerState: function (state, callback) {
+        this.log.debug('setPowerOn', state);
+
+        if(!this.device){
+            callback(new Error('Mi Smart Power Strip not found'));
+            return;
+        }
+
+        this.device.setPower(state);
         callback();
     },
 

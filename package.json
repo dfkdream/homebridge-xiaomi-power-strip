@@ -1,19 +1,20 @@
 {
-  "name": "homebridge-xiaomi-power-strip",
-  "version": "2.1.9",
-  "description": "Xiaomi Mi Power Strip plugin for Homebridge.",
+  "name": "homebridge-xiaomi-power-strip-fixed",
+  "version": "2.1.24",
+  "description": "Xiaomi Mi Power Strip plugin for Homebridge with working power management",
   "license": "MIT",
   "keywords": [
-    "homebridge plugin",
-    "Xiaomi",
-    "Mi power strip",
-    "Homebridge-Xiaomi-Power-Strip",
-    "Xiaomi Mi Smart",
-    "Xiaomi Mi Smart Power Strip"
+    "homebridge-plugin",
+    "homebridge",
+    "homekit",
+    "xiaomi",
+    "mi",
+    "mi power strip",
+    "mi smart power strip"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mininny/homebridge-xiaomi-power-strip.git"
+    "url": "https://github.com/mironov/homebridge-xiaomi-power-strip.git"
   },
   "engines": {
     "node": ">=0.12.0",
