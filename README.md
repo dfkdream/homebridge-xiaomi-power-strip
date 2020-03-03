@@ -6,13 +6,13 @@ It has functionality to turn on/off Xiaomi Mi Smart Power Strip from Apple Homek
 
 **Dependency**
 
-*miio with version <0.15.0
+*miio with version ^0.15.6
 
 **Installation**
 
 1.Install required dependencies and program
     
-    'npm install -g homebridge-xiaomi-power-strip miio@0.14.1'
+    'npm install -g homebridge-xiaomi-power-strip miio@^0.15.6'
 
 2.Get token and IP address for your Xiaomi Mi Power Strip by using:
     
