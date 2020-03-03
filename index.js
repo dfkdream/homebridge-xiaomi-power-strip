@@ -42,29 +42,30 @@ function XiaoMiPowerStrip(log, config) {
 XiaoMiPowerStrip.prototype = {
     discover: function () {
         var accessory = this;
-        const device = miio.createDevice({
+        miio.device({
             address: accessory.address,
             token: accessory.token,
             model: accessory.model
-        });
-        device.init();
-        accessory.device = device;
-        device.power();
+        })
+        .then(d=>{accessory.device=d});
     },
 
     getPowerState: function (callback) {
-        this.log.debug('getPowerState');
-
         if(!this.device){
             callback(null, false);
             return;
         }
 
-        callback(null, this.device.power());
+        this.device.call("get_prop",["power"])
+            .then(res=>{
+                on = res[0]==="on";
+                this.log.info("getPowerState:",on);
+                callback(null,on);
+            });
     },
 
     setPowerState: function (state, callback) {
-        this.log.debug('setPowerOn', state);
+        this.log.info('setPowerState:', state);
 
         if(!this.device){
             callback(new Error('Mi Smart Power Strip not found'));
