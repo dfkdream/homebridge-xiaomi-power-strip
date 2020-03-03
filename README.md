@@ -26,19 +26,12 @@ miio discover
 
 ```json
 "accessories": [
-
     {
-
         "accessory": "XiaoMiPowerStrip",
-        
         "name": "Power Strip",
-        
-        "address": **"IP address from step 2"**
-        
-        "token": **"token from step 2"**
-        
+        "address": "[IP Address from step 2]",
+        "token": "[Token from step 2]",
         "model": "zimi.powerstrip.v2"
-    
     }
 ]
 ```
